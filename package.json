@@ -1,0 +1,9 @@
+{
+  "name": "BB Starter",
+  "author": "Madhusudhan Srinivasa <madhums8@gmail.com> (http://twitter.com/madhums)",
+  "description": "Backbone bootstrap starter",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "2.5.7"
+  }
+}
