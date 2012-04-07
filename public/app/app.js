@@ -1,11 +1,11 @@
 // Filename: app.js
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'router', // Request router.js
 ], function($, _, Backbone, Router) {
-    var initialize = function() {  
+    var initialize = function() {
 
     /* From http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/ */
     Backbone.View.prototype.close = function () {
