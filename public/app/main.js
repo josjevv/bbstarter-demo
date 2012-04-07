@@ -3,17 +3,44 @@
 
 // Require.js allows us to configure shortcut alias
 // Their usage will become more apparent futher along in the tutorial.
+
+// Set the require.js configuration for your application.
 require.config({
+  // Initialize the application with the main application file
+  deps: ["main"],
+
   paths: {
+    // JavaScript folders
+    libs: "../assets/js/libs",
+
     jquery: '../assets/js/libs/jquery/jquery-min',
     underscore: '../assets/js/libs/underscore/underscore-min',
-    backbone: '../assets/js/libs/backbone/backbone-optamd3-min',
+    backbone: '../assets/js/libs/backbone/backbone-min',
     text: '../assets/js/libs/require/text',
     mustache: '../assets/js/libs/mustache/mustache',
-    bootstrap: '../assets/bootstrap/bootstrap.min.js',
-    templates: './templates'
-  }
+    bootstrap: '../assets/js/bootstrap/bootstrap.min',
+    templates: './templates',
 
+    // Shim Plugin
+    use: '../assets/js/libs/require/use-min'
+  },
+
+  use: {
+    backbone: {
+      deps: ["use!underscore", "jquery"],
+      attach: "Backbone"
+    },
+
+    underscore: {
+      attach: "_"
+    },
+
+    bootstrap: {
+      deps: ["jquery"]
+    }
+  },
+
+  waitSeconds: 10
 });
 
 require([
@@ -27,4 +54,5 @@ require([
   // The "app" dependency is passed in as "App"
   // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
   App.initialize();
+  console.log('Main initialized')
 });
