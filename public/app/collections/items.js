@@ -7,12 +7,12 @@ define([
   var Items = Backbone.Collection.extend({
     model: Item,
     url: function () {
-      return 'http://localhost:7000/items.json/'
+      return 'api/items/'
     },
 
     parse: function(response) {
       // Safety check ensuring only valid data is used
-      return response.items
+      return response
     },
 
     initialize: function() {
