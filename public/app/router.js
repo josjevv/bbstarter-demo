@@ -1,8 +1,8 @@
 // Filename: router.js
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'models/item',
   'views/home/main',
   'views/items/list',
@@ -18,7 +18,7 @@ define([
   aboutView
   ){
 
-  var itemsCollection = new ItemsCollection();
+  var itemsCollection = new ItemsCollection()
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -33,42 +33,34 @@ define([
     },
 
     /* Taken from http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/ */
-    showView: function(selector, view) {
-        console.log("Current View: " + selector);
-        if (this.currentView)
-            this.currentView.close();
-
-        $(selector).html(view.render().el);
-        this.currentView = view;
-        return view;
+    showView: function(view) {
+      view.render().el
     },
 
     showItems: function(){
-      // Call render on the module we loaded in via the dependency array
-      // 'views/projects/list'
-      itemListView.render();
+      this.showView( new itemListView({}) )
     },
 
     addItem: function() {
-      this.showView( '#page', new ItemEditView({ model: new ItemModel(), collection: ItemsCollection }));
+      this.showView( new ItemEditView({ model: new ItemModel(), collection: new ItemsCollection }))
     },
 
     showAbout: function () {
-      aboutView.render();
+      this.showView( new aboutView({}))
     },
 
     defaultAction: function(actions){
-      this.showView( '#page', new MainHomeView({}) );
+      this.showView( new MainHomeView({}) )
     }
 
-  });
+  })
 
   var initialize = function(){
-    var app_router = new AppRouter;
-    Backbone.history.start();
-  };
+    var app_router = new AppRouter
+    Backbone.history.start()
+  }
 
   return {
     initialize: initialize
-  };
-});
+  }
+})
