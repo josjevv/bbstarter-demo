@@ -1,20 +1,20 @@
 // Filename: views/home/main
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'mustache',
   'text!templates/home/main.mustache'
 ], function($, _, Backbone, Mustache, template){
-  var MainHomeView = Backbone.View.extend({    
+  var MainHomeView = Backbone.View.extend({
+    el: $('#page'),
     render: function() {
       var compiledTemplate = Mustache.render(template, { });
-      console.log("render: " + compiledTemplate);
 
       $(this.el).html(compiledTemplate);
-      return this;
+      return this
     }
-    
+
   });
 
   return MainHomeView;

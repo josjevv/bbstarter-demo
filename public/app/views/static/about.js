@@ -1,8 +1,8 @@
 // Filename: views/home/main
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'mustache',
   'text!templates/static/about.mustache'
 ], function($, _, Backbone, Mustache, template){
@@ -13,10 +13,11 @@ define([
     render: function(){
       var data = {};
       var compiledTemplate = _.template( template, data );
-      this.el.html( compiledTemplate );
+      $(this.el).html( compiledTemplate );
+      return this
     }
 
   });
 
-  return new aboutView;
+  return aboutView;
 });

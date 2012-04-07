@@ -1,42 +1,36 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'collections/items',
-  'mustache',
-  'text!templates/items/list.mustache'
+    'jquery'
+  , 'use!underscore'
+  , 'use!backbone'
+  , 'collections/items'
+  , 'mustache'
+  , 'text!templates/items/list.mustache'
+], function($, _, Backbone, Items, Mustache, itemListTemplate){
 
-], function($, _, Backbone, itemsCollection, Mustache, itemListTemplate){
-  var itemListView = Backbone.View.extend({
-    el: $("#page"),
-    events: {
-        "click .add": "add"
-    },
+  // Create a item list
+  var ItemsView = Backbone.View.extend({
+      el: $('#page')
+    , events: {
+        'click .add': 'add'
+      }
+    , initialize: function(){
+        this.collection = new Items
+        this.collection.bind('reset', this.render, this);
+        this.collection.fetch()
+      }
+    , render: function(){
+        var data = {
+          items:  _.map(this.collection.models, function(v) { return v.toJSON() })
+        }
 
-    initialize: function(){
-      this.collection = itemsCollection;
-      //this.collection.bind("add", this.exampleBind);
-      //this.collection = projectsCollection.add({ name: "Twitter"});
-      //this.collection = projectsCollection.add({ name: "Facebook"});
-      //this.collection = projectsCollection.add({ name: "Myspace", score: 20});
-    },
+        var compiledTemplate = Mustache.render(itemListTemplate, data)
+        $(this.el).html(compiledTemplate)
+        return this
+      }
+    , add: function() {
+        window.alert('Add')
+      }
+  })
 
-    exampleBind: function( model ){
-      //console.log(model);
-    },
-
-    render: function(){
-      var data = {
-        items:  _.map(this.collection.models, function(v) { return v.toJSON(); })
-      };
-
-      var compiledTemplate = Mustache.render(itemListTemplate, data);
-      $("#page").html( compiledTemplate );
-    },
-    add: function() {
-      window.alert("Add");
-    }
-  });
-
-  return new itemListView;
-});
+  return ItemsView
+})

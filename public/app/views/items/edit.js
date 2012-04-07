@@ -1,56 +1,54 @@
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'mustache',
   'text!templates/items/edit.mustache'
 
 ], function($, _, Backbone, Mustache, template){
   var ItemEditView = Backbone.View.extend({
+    el: $('#page'),
     events: {
-        "click .save": "saveItem",
-        "click .delete": "deleteItem"
+      'submit #new-item': 'saveItem'
     },
 
     initialize: function(){
-      this.model.bind("change", this.render, this);
+      this.model.bind('change', this.render, this)
     },
 
     render: function(){
-     var compiledTemplate = Mustache.render(template, this.model.toJSON() );
-      $(this.el).html(compiledTemplate);
-      return this;
+      var compiledTemplate = Mustache.render(template, this.model.toJSON() )
+      $(this.el).html(compiledTemplate)
+      return this
     },
 
-    saveItem: function() {
-      window.alert("Save");
+    saveItem: function(e) {
+      e.preventDefault()
+      window.alert('Save')
+
       this.model.set({
         name: $('#itemName').val(),
-        grapes: $('#itemPrice').val()
-      });
+        price: $('#itemPrice').val()
+      })
 
       if (this.model.isNew()) {
-        var self = this;
-        console.log(this);
-        this.collection.__super__.create(this.model, {
+        var self = this
+        this.collection.create(this.model, {
           success: function() {
-            //app.navigate('wines/'+self.model.id, false);
-            window.alert("Success");
+            //app.navigate('wines/'+self.model.id, false)
+            window.alert('Success')
           }
-        });
-      } else {
-        this.model.save();
+        })
       }
-
-      return false;
-
+      else
+        this.model.save()
     },
 
     deleteItem: function() {
-      window.alert("Delete");
+      window.alert('Delete')
     }
 
-  });
+  })
 
-  return ItemEditView;
-});
+  return ItemEditView
+})
