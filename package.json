@@ -4,6 +4,7 @@
   "description": "Backbone bootstrap starter",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.7"
+    "express": "2.5.7",
+    "mongoose": "2.5.13"
   }
 }
