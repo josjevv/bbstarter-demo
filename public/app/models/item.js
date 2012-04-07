@@ -1,16 +1,19 @@
 define([
-  'underscore',
-  'backbone'
+  'use!underscore',
+  'use!backbone'
 ], function(_, Backbone) {
-  var ItemModel = Backbone.Model.extend({
-    urlRoot: "api/items",
-    defaults: {
-      price: 10
+  var Item = Backbone.Model.extend({
+    url: function () {
+      return 'http://localhost:7000/items.json'
     },
+
+    defaults: {
+    },
+
     initialize: function(){
     }
 
   });
 
-  return ItemModel;
+  return Item;
 });
