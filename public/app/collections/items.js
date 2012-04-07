@@ -1,16 +1,24 @@
 define([
   'jquery',
-  'underscore',
-  'backbone',
+  'use!underscore',
+  'use!backbone',
   'models/item'
-], function($, _, Backbone, itemModel){
-  var ItemsCollection = Backbone.Collection.extend({
-    model: itemModel,
-    url: "api/wines",
+], function($, _, Backbone, Item){
+  var Items = Backbone.Collection.extend({
+    model: Item,
+    url: function () {
+      return 'http://localhost:7000/items.json/'
+    },
+
+    parse: function(response) {
+      // Safety check ensuring only valid data is used
+      return response.items
+    },
+
     initialize: function() {
     }
 
   });
 
-  return ItemsCollection;
+  return Items;
 });
