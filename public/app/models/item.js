@@ -3,9 +3,11 @@ define([
   'use!backbone'
 ], function(_, Backbone) {
   var Item = Backbone.Model.extend({
-    url: function () {
-      return 'api/items'
+    urlRoot: function () {
+      return 'api/items/'
     },
+
+    idAttribute: '_id',
 
     defaults: {
     },

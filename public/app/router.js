@@ -4,16 +4,20 @@ define([
   'use!underscore',
   'use!backbone',
   'models/item',
+  'views/navbar/main',
   'views/home/main',
   'views/items/list',
   'views/items/edit',
+  'views/items/show',
   'collections/items',
   'views/static/about'
 ], function($, _, Backbone,
   ItemModel,
+  NavBarView,
   MainHomeView,
   itemListView,
   ItemEditView,
+  ItemShowView,
   ItemsCollection,
   aboutView
   ){
@@ -26,6 +30,7 @@ define([
       'items': 'showItems',
       'items/add': 'addItem',
       'items/:id': 'viewItem',
+      'items/:id/edit': 'editItem',
       'about': 'showAbout',
 
       // Default
@@ -45,6 +50,14 @@ define([
       this.showView( new ItemEditView({ model: new ItemModel(), collection: new ItemsCollection }))
     },
 
+    viewItem: function (id) {
+      this.showView( new ItemShowView({ model: new ItemModel({ _id: id }), collection: new ItemsCollection }))
+    },
+
+    editItem: function (id) {
+      this.showView( new ItemEditView({ model: new ItemModel({ _id: id }), collection: new ItemsCollection }))
+    },
+
     showAbout: function () {
       this.showView( new aboutView({}))
     },
@@ -57,6 +70,7 @@ define([
 
   var initialize = function(){
     var app_router = new AppRouter
+    var navbar = new NavBarView().render()
     Backbone.history.start()
   }
 

@@ -18,6 +18,7 @@ require.config({
     backbone: '../assets/js/libs/backbone/backbone-min',
     text: '../assets/js/libs/require/text',
     mustache: '../assets/js/libs/mustache/mustache',
+    handlebars: '../assets/js/libs/handlebars/handlebars',
     bootstrap: '../assets/js/bootstrap/bootstrap.min',
     templates: './templates',
 

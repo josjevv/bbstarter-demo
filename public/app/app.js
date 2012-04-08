@@ -4,6 +4,7 @@ define([
   'use!underscore',
   'use!backbone',
   'router', // Request router.js
+
 ], function($, _, Backbone, Router) {
     var initialize = function() {
 

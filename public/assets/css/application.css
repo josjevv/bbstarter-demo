@@ -8,3 +8,7 @@ body {
   height: 32px;
   margin: 0 auto;
 }
+
+table.items-list td {
+  vertical-align: middle;
+}

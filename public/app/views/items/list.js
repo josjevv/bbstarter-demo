@@ -11,7 +11,7 @@ define([
   var ItemsView = Backbone.View.extend({
       el: $('#page')
     , events: {
-        'click .add': 'add'
+        'click .delete': 'deleteItem'
       }
     , initialize: function(){
         this.collection = new Items
@@ -27,8 +27,13 @@ define([
         $(this.el).html(compiledTemplate)
         return this
       }
-    , add: function() {
-        window.alert('Add')
+    , deleteItem: function (e) {
+        e.preventDefault()
+        var id = $(e.currentTarget).data("id")
+        var item = this.collection.get(id)
+        item.destroy({wait: true})
+        this.collection.remove(item);
+        $(e.target).closest('tr').remove()
       }
   })
 
