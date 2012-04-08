@@ -1,6 +1,8 @@
-## Backbone js with twitter bootstrap
+## A demo app for [bbstarter](http://github.com/madhums/bbstarter)
 
-A custom boilerplate for developing web clients
+The application demonstrates simple CRUD operations on items. The items are
+fetched from nodejs-express server which returns the results from mongodb
+in json format. A more or less REST based implementation.
 
 To start the app
 
