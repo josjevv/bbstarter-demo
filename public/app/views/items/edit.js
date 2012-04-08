@@ -21,7 +21,7 @@ define([
 
     initialize: function(){
       this.model = new Item({_id: this.options.model.id})
-      this.model.bind('change', this.render, this)
+      //this.model.bind('change', this.render, this)
       this.model.fetch()
     },
 
