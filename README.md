@@ -18,3 +18,9 @@ Then visit `http://localhost:3000`
 * Thanks to [suprememoocow](http://github.com/suprememoocow/modular-backbone-bootstrap)
 
 **Note**: I just started working on backbone, there might be lot which can be generalized and made better. Feel free to send pull requests!
+
+## Todos
+* Generalize
+* Model validations
+* File uploads
+* many more...
